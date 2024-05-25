@@ -119,7 +119,7 @@ app.get('/players/:playerId/playerScores/', async (request, response) => {
   FROM player_match_score INNER JOIN player_details ON player_details.player_id = player_match_score.player_id
   WHERE player_match_score.player_id = ${playerId}
   GROUP BY player_match_score.player_id;`
-  const playerMatchesStatics = await db.all(getPlayerMatchesStatics)
+  const playerMatchesStatics = await db.get(getPlayerMatchesStatics)
   response.send(playerMatchesStatics)
 })
 module.exports = app
